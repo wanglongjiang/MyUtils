@@ -6,8 +6,7 @@ import java.lang.reflect.TypeVariable;
 
 public abstract class BaseInterfaceImpl<T> implements BaseInterface<T> {
 
-	private Class<T> modelClass;
-
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public BaseInterfaceImpl() {
 		Type genericSuperclass = this.getClass().getGenericSuperclass();
 		if(genericSuperclass instanceof ParameterizedType) {
@@ -15,7 +14,6 @@ public abstract class BaseInterfaceImpl<T> implements BaseInterface<T> {
 			for (Type type : actualTypeArguments) {
 				if(type instanceof Class<?>) {
 					System.out.println(((Class) type).isAssignableFrom(BigTest.class));;
-					modelClass = (Class<T>) type;
 				}
 				System.out.println(type);
 			}
